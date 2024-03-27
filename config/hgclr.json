@@ -1,0 +1,19 @@
+{
+  "structure_encoder": {
+    "thre": 0.02,
+    "tau": 1.0,
+    "layer": 2
+  },
+  "train": {
+    "bert_lr": 3e-5,
+    "epoch": 300,
+    "early_stop": 10,
+    "update": 1,
+    "warmup": true,
+    "warmup_steps": 2000
+    },
+    "device_setting": {
+      "device": "cuda",
+      "num_workers": 8
+  }
+}

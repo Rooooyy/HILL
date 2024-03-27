@@ -1,0 +1,24 @@
+{
+  "structure_encoder": {
+    "output_dim": 768,
+    "link_input": false,
+    "drop_root": false,
+    "trans_dp": 0.1
+  },
+  "contrast": {
+    "proj_dim": 768,
+    "tau": 1.0
+  },
+  "train": {
+    "bert_lr": 3e-5,
+    "epoch": 200,
+    "early_stop": 10,
+    "update": 1,
+    "warmup": true,
+    "warmup_steps": 2000
+    },
+    "device_setting": {
+      "device": "cuda",
+      "num_workers": 8
+  }
+}
