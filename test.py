@@ -13,11 +13,12 @@ parser = argparse.ArgumentParser()
 parser.add_argument('--device', type=str, default='cuda')
 parser.add_argument('-b', '--batch', type=int, default=32, help='Batch size.')
 parser.add_argument('-n', '--name', type=str, required=True, help='Name of checkpoint. Commonly as DATASET-NAME.')
-parser.add_argument('-e', '--extra', default='_macro', choices=['_macro', '_micro'], help='An extra string in the name of checkpoint.')
+parser.add_argument('-e', '--extra', default='micro', choices=['macro', 'micro'],
+                    help='An extra string to specify the version of the checkpoint.')
 args = parser.parse_args()
 
 if __name__ == '__main__':
-    checkpoint = torch.load(os.path.join('ckpt', args.name, 'best{}.pt'.format(args.extra)),
+    checkpoint = torch.load(os.path.join('ckpt', args.name, 'best_{}.pt'.format(args.extra)),
                             map_location='cpu')
     batch_size = args.batch
     device = args.device
@@ -77,4 +78,4 @@ if __name__ == '__main__':
     scores = evaluate(pred, truth, label_dict)
     macro_f1 = scores['macro_f1']
     micro_f1 = scores['micro_f1']
-    print('Test performance with best_val%s ↓\nmicro-f1: %.4f\nmacro-f1: %.4f' % (extra, micro_f1, macro_f1))
+    print('Test performance with best_val_%s ↓\nmicro-f1: %.4f\nmacro-f1: %.4f' % (extra, micro_f1, macro_f1))
